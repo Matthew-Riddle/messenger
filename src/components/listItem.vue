@@ -28,7 +28,7 @@ export default {
         }
     },
     mounted() {
-        EventBus.$on("PostOk", (note) => { this.onClick("Post", note) });
+        EventBus.$on("PostOk", (message) => { this.onClick("Post", message) });
         EventBus.$on("Delete", () => { this.onClick("Delete") });
         EventBus.$on("textData", (note) => { this.notes.push(note)})
     },
@@ -42,8 +42,8 @@ export default {
             if(action === "Post") {
                 vm.count += 1;
                 console.log('Post', vm.count);
-                console.log(message);
-                vm.notes.push({id:vm.count, title: "Placeholder Text", message: message, show: false})
+                console.log(message.title);
+                vm.notes.push({id:vm.count, title: message.title, message: message.note, show: false})
             }
             if(action === "Delete") {
                 if(vm.count != 0) {

@@ -6,13 +6,11 @@
             <div class="modal-container">
 
               <div class="modal-header">
-                <slot name="header">
-                  default header
-                </slot>
+                <input name="title" ref="titleObj" placeholder="Title" @keyup.enter="onClick()" />
               </div>
 
               <div class="modal-body">
-                <textarea placeholder="TODO" ref="textareaObj" name="text-input" rows="10" cols="40"/>
+                <textarea placeholder="TODO" ref="textareaObj" name="text-input" rows="10" cols="40" @keyup.enter="onClick()"/>
               </div>
 
               <div class="modal-footer">
@@ -32,16 +30,20 @@
 <script>
 import { EventBus } from './event-bus.js';
 export default {
-    components: { },
-    mounted() {
-        //EventBus.$emit('close');
-    },
-    methods: {
-        onClick() {
-          EventBus.$emit('PostOk', this.$refs.textareaObj.value);
-          EventBus.$emit('Close', false);
-        }
+  components: { },
+  methods: {
+    onClick() {
+      var message = { title: "", note: "" };
+      message.note = this.$refs.textareaObj.value;
+      message.title = this.$refs.titleObj.value;
+      EventBus.$emit('PostOk', message);
+      EventBus.$emit('Close', false);
     }
+  },
+  mounted() {
+      const title = this.$refs.titleObj;
+      title.focus();
+  }
 }
 </script>
 
@@ -71,6 +73,7 @@ export default {
   margin: 0px auto;
   padding: 20px 30px;
   background-color: rgb(117, 117, 117);
+  color: black;
   border-radius: 2px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
   transition: all 0.3s ease;
@@ -89,7 +92,7 @@ export default {
 
 .modal-header h1 {
   margin-top: 0;
-  color: #b30a0a;
+  color: #3a0404;
 }
 
 .modal-body {
