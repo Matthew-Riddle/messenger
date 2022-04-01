@@ -1,6 +1,6 @@
 <template>
-    <div class="subnav hover:bg-gray-600 rounded-lg screen:min-w-0">
-        <div class="lg:text-4xl sm:text-xs lg:m-4 sm:m-0.8" @click="onClick(buttonName)">
+    <div class="subnav hover:bg-gray-600 rounded-lg screen:min-w-0"  @click="onClick(buttonName)">
+        <div class="lg:text-4xl sm:text-xs lg:m-4 sm:m-0.8">
             {{buttonName}}
         </div>
     </div>
